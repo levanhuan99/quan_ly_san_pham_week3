@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+
+<body>
+<input id="text" />
+<button onclick="add()">add product</button><br/><br/>
+<button onclick="display()">display add the product</button><br/>
+<div id="div"></div>
+<script>
+    let arr=Array();
+    function add() {
+        let value=document.getElementById("text").value;
+        if (value===""){
+            alert("ban can nhap ten san pham");
+        }else{
+            arr.push(value);
+            document.getElementById("text").value="";
+            console.log(arr);
+            alert("ban da them "+ value+" vao gio hang" );
+
+        }
+
+
+    }
+    function display() {
+        let t="<table>";
+        for (let i=0;i<arr.length;i++){
+            t=t+"<tr>";
+            t=t+"<td>"+i+"</td>"+
+                "<td >"+arr[i]+"</td>"+
+                "<td>"+"<button onclick='editProduct()'>"+"edit"+"</button>"+"</td>"+
+                "<td>"+"<button onclick='deleteProduct()'>"+"delete"+"</button>"+"</td>";
+
+            t=t+"</tr>";
+
+        }
+        t=t+"</table>";
+        document.getElementById("div").innerHTML=t;
+
+    }
+
+
+
+    function deleteProduct() {
+
+
+    }
+
+
+
+    function editProduct() {
+        for (let i=0;i<arr.length;i++){
+
+
+        }
+
+    }
+
+
+</script>
+</body>
+
+</html>
