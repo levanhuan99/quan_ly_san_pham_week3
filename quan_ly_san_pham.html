@@ -9,8 +9,8 @@
 <body>
 <input id="text" />
 <button onclick="add()">add product</button><br/><br/>
-<button onclick="display()">display add the product</button><br/>
-<div id="div"></div>
+<h3>display add the product</h3><br/>
+<div id="result"></div>
 <script>
     let arr=Array();
     function add() {
@@ -21,44 +21,33 @@
             arr.push(value);
             document.getElementById("text").value="";
             console.log(arr);
-            alert("ban da them "+ value+" vao gio hang" );
-
+            display();
         }
-
-
     }
     function display() {
         let t="<table>";
         for (let i=0;i<arr.length;i++){
             t=t+"<tr>";
-            t=t+"<td>"+i+"</td>"+
-                "<td >"+arr[i]+"</td>"+
-                "<td>"+"<button onclick='editProduct()'>"+"edit"+"</button>"+"</td>"+
-                "<td>"+"<button onclick='deleteProduct()'>"+"delete"+"</button>"+"</td>";
-
+            t=t+ "<td id='product"+i+"'>"+arr[i]+"</td>"+
+                "<td><button onclick='editProduct("+i+")'>edit</button></td>"+
+                "<td><button onclick='deleteProduct("+i+")'>delete</button></td>";
             t=t+"</tr>";
-
         }
         t=t+"</table>";
-        document.getElementById("div").innerHTML=t;
-
+        document.getElementById("result").innerHTML=t;
     }
-
-
-
-    function deleteProduct() {
-
-
+    function deleteProduct(position) {
+        arr.splice(position,1);
+        display();
     }
-
-
-
-    function editProduct() {
-        for (let i=0;i<arr.length;i++){
-
-
-        }
-
+    function editProduct(position) {
+        let editString =  "<input id='productName"+position+"'/><button type='button' value='Save' onclick='saveNewName("+position+")'>Save</button>"
+        document.getElementById("product"+position+"").innerHTML =editString;
+    }
+    function saveNewName(position) {
+        let newName = document.getElementById("productName"+position+"").value;
+        arr[position] = newName;
+        display();
     }
 
 
